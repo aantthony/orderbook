@@ -1,0 +1,27 @@
+{
+  "name": "orderbook",
+  "version": "0.0.0",
+  "description": "orderbook =========",
+  "main": "index.js",
+  "scripts": {
+    "test": "[[ -z $TRAVIS_JOB_ID ]] && mocha --recursive || npm run travis",
+    "travis": "jscoverage lib lib-cov && OB_COVERAGE=1 mocha --recursive -R mocha-lcov-reporter | coveralls && mocha --recursive",
+    "coverage": "jscoverage lib lib-cov && OB_COVERAGE=1 mocha --recursive -R html-cov > lib-cov/test.html && open lib-cov/test.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aantthony/orderbook.git"
+  },
+  "author": "Anthony Foster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aantthony/orderbook/issues"
+  },
+  "devDependencies": {
+    "mocha-lcov-reporter": "0.0.1",
+    "should": "~2.1.0",
+    "jscoverage": "~0.3.8",
+    "mocha": "~1.14.0",
+    "coveralls": "~2.3.0"
+  }
+}
