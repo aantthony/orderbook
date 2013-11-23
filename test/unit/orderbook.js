@@ -66,6 +66,14 @@ describe('Orderbook', function () {
       market.ask[0].should.equal(0.3);
       market.ask[1].should.equal(90);
     });
+
+    it('should cross multiple asks', function () {
+      market.setAsk(100, 0.30);
+      market.setAsk(50, 0.32);
+      market.buy(120);
+      market.ask[0].should.equal(0.32);
+      market.ask[1].should.equal(150 - 120);
+    });
   });
 
   describe('#sell', function () {
