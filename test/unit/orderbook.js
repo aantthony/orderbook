@@ -30,6 +30,17 @@ describe('Orderbook', function () {
       market.bid[0].should.equal(0.4);
     });
 
+    it('should remove the order if the total volume becomes zero', function () {
+      market.setBid(100, 0.30);
+      market.setBid(0, 0.3);
+      should.not.exist(market.bid);
+    });
+
+    it('should not place an order if the volume is zero', function () {
+      market.setBid(0, 0.3);
+      should.not.exist(market.bid);
+    });
+
   });
 
   describe('#setAsk', function () {
@@ -51,6 +62,17 @@ describe('Orderbook', function () {
       market.setAsk(100, 0.20);
       market.setAsk(100, 0.30);
       market.ask[0].should.equal(0.2);
+    });
+
+    it('should remove the order if the total volume becomes zero', function () {
+      market.setAsk(100, 0.30);
+      market.setAsk(0, 0.3);
+      should.not.exist(market.ask);
+    });
+
+    it('should not place an order if the volume is zero', function () {
+      market.setAsk(0, 0.3);
+      should.not.exist(market.ask);
     });
   });
 
